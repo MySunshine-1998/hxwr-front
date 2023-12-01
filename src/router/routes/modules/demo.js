@@ -1,7 +1,7 @@
 export default {
   path: '/home',
   name: 'Home',
-  component: () => import('@/layouts/index.vue'),
+  component: () => import('@/layouts/HeaderView.vue'),
   orderNo: 1,
   meta: {
     title: '首页'
