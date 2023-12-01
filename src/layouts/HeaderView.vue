@@ -2,6 +2,25 @@
     <div class="headerView">
         <div class="header">
             <div class="systemName">xxxxx仿真演示系统</div>
+            <div class="tab">
+                <div class="bg textStyle knowledge">知识库</div>
+                <div class="bg textStyle">生成预案</div>
+            </div>
+            <div class="icon">
+                <div class="bg textStyle knowledge">
+                    <img src="../assets/image/time.png" alt="">
+                    <p style="margin: 0 0 0 10px;line-height:34px">1X</p>
+                </div>
+                <div class="bgSmall textStyle knowledge">
+                    <img src="../assets/image/play.png" alt="">
+                </div>
+                <div class="bgSmall textStyle knowledge">
+                    <img src="../assets/image/record.png" alt="">
+                </div>
+                <div class="bgSmall textStyle">
+                    <img src="../assets/image/downLoad.png" alt="">
+                </div>
+            </div>
             <div class="text">
                 时间: 2023/11/6-纽约: 04:18:27- 当地:11:18:27 22小时7 分钟-剩余GPU: NVIDIA GeForce GTX 1080 - 单元数量:16
                 -脉冲时间:0ms
@@ -46,6 +65,24 @@
             font-weight: bold;
         }
 
+        .tab {
+            display: flex;
+        }
+
+        .knowledge {
+            margin-right: 8px;
+        }
+
+        .icon {
+            display: flex;
+
+            >div {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
         .text {
             font-size: 16px;
             display: flex;
@@ -61,6 +98,10 @@
         .combatSide {
             display: flex;
             align-items: center;
+
+            .textStyle {
+                margin-right: 8px;
+            }
 
             .user {
 
@@ -96,9 +137,8 @@
         }
 
         .textStyle {
-            display: flex;
-            align-content: center;
-            justify-content: center;
+            text-align: center;
+            line-height: 34px;
         }
     }
 }
