@@ -11,14 +11,14 @@ import { setupRouterGuard } from '@/router/guard'
 
 import 'ant-design-vue/dist/reset.css'
 import Antd from 'ant-design-vue'
-
-const app = createApp(App)
-
+// 导入 svgIcon
+import SvgIcon from '@/components/SvgIcon' // ===================这行1
+const app = createApp(App) 
 setupStore(app)
 setupRouter(app)
 setupRouterGuard(router)
 
 // 注册全局组件
 app.use(Antd)
-
+app.use(SvgIcon)
 app.mount('#app')

@@ -24,15 +24,23 @@ export const RootRoute = {
 export const EXCEPTION_COMPONENT = () => import('@/views/exception/Exception.vue')
 
 // 404 on a page
+// 导出一个常量PAGE_NOT_FOUND_ROUTE，它是一个路由对象
 export const PAGE_NOT_FOUND_ROUTE = {
+  // 路由路径
   path: '/:path(.*)*',
+  // 路由名称
   name: 'PageNotFound',
+  // 路由组件
   component: EXCEPTION_COMPONENT,
+  // 路由元数据
   meta: {
+    // 页面标题
     title: 'ErrorPage',
+    // 是否隐藏面包屑
     hideBreadcrumb: true,
+    // 是否隐藏菜单
     hideMenu: true
   }
 }
 
-export const basicRoutes = [RootRoute, ...asyncRoutes, PAGE_NOT_FOUND_ROUTE]
+export const basicRoutes = [RootRoute, ...asyncRoutes, PAGE_NOT_FOUND_ROUTE] 

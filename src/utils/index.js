@@ -1,7 +1,7 @@
 import { unref } from 'vue'
 import { isObject } from '@/utils/is'
 
-export const noop = () => {}
+export const noop = () => { }
 
 /**
  * @description:  Set ui mount node
@@ -66,10 +66,10 @@ export function getRawRoute(route) {
     ...opt,
     matched: matched
       ? matched.map((item) => ({
-          meta: item.meta,
-          name: item.name,
-          path: item.path
-        }))
+        meta: item.meta,
+        name: item.name,
+        path: item.path
+      }))
       : undefined
   }
 }
@@ -83,4 +83,9 @@ export const withInstall = (component, alias) => {
     }
   }
   return component
+}
+
+//公共引入资源的方法
+export const getAssetsFile = (url) => { 
+  return new URL(`../assets/image/${url}`, import.meta.url).href
 }
