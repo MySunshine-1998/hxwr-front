@@ -1,3 +1,11 @@
+/*
+ * @Author: sunyue
+ * @Date: 2023-12-01 15:53:08
+ * @LastEditors: sunyue
+ * @LastEditTime: 2023-12-06 10:04:21
+ * @Description: 描述
+ * Copyright (c) 2023 by 中国科学院软件研究所, All Rights Reserved. 
+ */
 import { fileURLToPath, URL } from 'node:url'
 import { createProxy } from './build/vite/proxy'
 import { OUTPUT_DIR } from './build/constant'
@@ -27,7 +35,7 @@ export default defineConfig(({ command, mode }) => {
     server: {
       host: true,
       port: VITE_PORT,
-      proxy: createProxy(VITE_PROXY)
+      // proxy: createProxy(VITE_PROXY)
     },
     esbuild: {
       pure: VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : []

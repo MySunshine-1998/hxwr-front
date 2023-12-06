@@ -33,7 +33,6 @@ const transform = {
       return res.data
     }
     // 错误的时候返回
-
     const { data } = res
     if (!data) {
       // return '[HTTP] Request has no return value';
@@ -43,9 +42,9 @@ const transform = {
     const { [status]: code, [value]: result, message } = data
 
     // 这里逻辑可以根据项目进行修改
-    const hasSuccess = data && Reflect.has(data, status) && code === ResultEnum.SUCCESS
+    const hasSuccess = data
     if (hasSuccess) {
-      return result
+      return data
     }
 
     // 在此处根据自己项目的实际情况对不同的code执行不同的操作
