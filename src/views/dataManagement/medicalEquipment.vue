@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="medicalEquipment">
-      <BasicTable :isForm="true" :loading="loading" :total="2000" :current="2" :pageSize="10" :columns="columns"
+      <BasicTable :isForm="true" :isRowSelection="true" :loading="loading" :total="2000" :current="2" :pageSize="10" :columns="columns"
         :scroll="{ x: 1200, }" :data-source="data" :operationBtns="operationBtns">
         <template #action>
           <TableAction

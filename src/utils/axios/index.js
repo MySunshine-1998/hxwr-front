@@ -236,7 +236,7 @@ function createAxios(opt) {
     )
   )
 }
-export const defHttp = createAxios()
+export const defHttp = createAxios
 
 // other api url
 // export const otherHttp = createAxios({

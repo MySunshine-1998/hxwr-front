@@ -6,9 +6,14 @@
     <div class="operatebtns">
       <slot :name="'action'"></slot>
     </div>
-    <a-table v-bind="$attrs" v-if="columnsVal.length > 0 && loading == false" :columns="columnsVal" :bordered="true"
-      :pagination="false" :scroll="scroll" @change="handleTableChange">
-      <template #bodyCell="{ column, record }">
+    <a-table v-bind="$attrs"
+      :row-selection="props.isRowSelection ? { selectedRowKeys: selectedRowKeysArr, onChange: onSelectionChange } : null"
+      v-if="columnsVal.length > 0 && loading == false" :columns="columnsVal" :bordered="true" :pagination="false"
+      :scroll="scroll" @change="handleTableChange">
+      <template #bodyCell="{ column, record, index }">
+        <template v-if="column.dataIndex == 'serialNumber'">
+          <span>{{ index + 1 }}</span>
+        </template>
         <template v-if="column.type == 'text' && column.dataIndex != 'operation'">
           <span>{{ record[column.dataIndex] }}</span>
         </template>
@@ -44,7 +49,7 @@
 <script setup>
 import { BasicForm } from '@/components/Form'
 import { BasicPagination } from '../../Pagination/index'
-import { reactive, computed } from 'vue'
+import { reactive, computed, ref } from 'vue'
 let props = defineProps({
   isForm: Boolean,
   scroll: Object,
@@ -53,6 +58,7 @@ let props = defineProps({
   total: Number,
   pageSize: Number,
   current: Number,
+  isRowSelection: Boolean,
   pageSizeOptions: {
     type: Array,
     default: () => ['10', '30', '60', '80']
@@ -89,10 +95,19 @@ function handleTableChange(pagination, filters, sorter, { currentDataSource }) {
 }
 function handleFormClick(item, data) {
   console.log(item, data)
- }
+}
 function changePage(page, pageSize) {
 
 }
+let selectedRowKeysArr = ref([])
+
+function onSelectionChange(selectedRowKeys, selectedRows) {
+  selectedRowKeysArr.value = []
+  selectedRowKeys.map(key => {
+    selectedRowKeysArr.value.push(key)
+  })
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -107,6 +122,42 @@ function changePage(page, pageSize) {
     // height: 100%;
     color: #999;
     background-color: rgba(22, 105, 220, 0.075);
+  }
+
+
+
+  ::v-deep(.ant-checkbox-wrapper:not(.ant-checkbox-wrapper-disabled):hover .ant-checkbox-checked:not(.ant-checkbox-disabled) .ant-checkbox-inner) {
+    border: 1px solid #02E6FF;
+    background-color: transparent;
+  }
+
+  ::v-deep(.ant-checkbox-wrapper:not(.ant-checkbox-wrapper-disabled):hover .ant-checkbox-checked:not(.ant-checkbox-disabled):after) {
+    border: 1px solid #02E6FF;
+
+  }
+
+  ::v-deep(.ant-checkbox-indeterminate .ant-checkbox-inner:after) {
+    background-color: #fff;
+  }
+
+  ::v-deep(.ant-checkbox-wrapper) {
+
+
+    .ant-checkbox-inner {
+      background-color: transparent;
+      border: 1px solid #02E6FF;
+      border-radius: 2px;
+
+
+
+      &:hover {
+        border: 1px solid #02E6FF;
+        background-color: transparent;
+
+      }
+    }
+
+
   }
 
   .spin {

@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="biologyLab">
-      <BasicTable :isForm="true"  :loading="loading" :total="20" :current="2" :pageSize="10"
+      <BasicTable :isForm="true" :isRowSelection="true" :loading="loading" :total="20" :current="2" :pageSize="10"
         :columns="columns" :scroll="{ x: 1200, }" :data-source="data" :operationBtns="operationBtns">
         <template #action>
           <TableAction :actions="[{ label: '新增', }, { label: '导出' }]" @actionClick="handleActionClick">

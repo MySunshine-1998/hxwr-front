@@ -5,8 +5,12 @@
         </div>
         <div class="tableList">
             <div class="tableView" v-if="isdetails">
-                <BasicTable :isForm="false" :loading="loading" :total="2000" :current="2" :pageSize="10" :columns="columns"
-                    :scroll="{ y: 530, }" :data-source="data" :operationBtns="operationBtns">
+                <div class="header">
+
+                </div>
+                <BasicTable :isForm="false" :loading="loading" :isRowSelection="false" :total="2000" :current="2"
+                    :pageSize="10" :columns="columns" :scroll="{ y: 530, }" :data-source="data"
+                    :operationBtns="operationBtns" rowKey="id">
                 </BasicTable>
             </div>
             <div class="detailsView" v-else>
@@ -32,12 +36,12 @@
 </template> 
 <script  setup>
 import Layout from './components/layout.vue'
-import { BasicTable, TableAction } from '@/components/Table'
+import { BasicTable, TableAction, } from '@/components/Table'
 import inputSearch from '../../components/diy-components/inputSearch.vue'
 import Collapse from '../../components/diy-components/collapse.vue'
-import { ref, reactive, h } from 'vue'
+import { ref, reactive, h, onMounted } from 'vue'
 import { columns } from './data.js'
-
+import { getChemical } from '@/api/chemical/index.js'
 let operationBtns = ref([
     {
         label: '编辑',
@@ -276,7 +280,23 @@ let collapseItems = ref([
     },
 ])
 
+onMounted(() => {
+    getChemicalData()
+})
 
+function getChemicalData() {
+    getChemical().then(res => {
+        if (res.length > 0) {
+            data.value = res.map((item, index) => {
+                return {
+                    ...item,
+                    key: index + 1
+
+                }
+            })
+        }
+    })
+}
 let isdetails = ref(true)
 function handleActionClick() { }
 function search(val) {

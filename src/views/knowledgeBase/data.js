@@ -1,54 +1,34 @@
 export const columns = [
     {
-        title: 'ZB名称',
+        title: '序号',
+        dataIndex: 'serialNumber',
+        align: 'center',
+        search: true
+    },
+    {
+        title: '名称',
         dataIndex: 'name',
         align: 'center',
         search: true
     },
     {
-        title: '数量',
-        dataIndex: 'name',
+        title: 'CAS号',
+        dataIndex: 'cas_num',
         align: 'center',
     },
     {
-        title: 'ZB所属种类',
-        dataIndex: 'name',
+        title: '别名',
+        dataIndex: 're_name',
         align: 'center',
         search: true
     },
     {
-        title: '配属单位',
-        dataIndex: 'name',
+        title: '英文名',
+        dataIndex: 'english_name',
         align: 'center',
         search: true
     },
-    {
-        title: 'Z技指标',
-        dataIndex: 'name',
-        align: 'center',
-        search: true
-    },
-    {
-        title: '位置',
-        dataIndex: 'name',
-        align: 'center',
-    },
-    {
-        title: '使用状态',
-        dataIndex: 'name',
-        align: 'center',
-    },
-    {
-        title: '耗材名称',
-        dataIndex: 'name',
-        align: 'center',
-        search: true
-    },
-    {
-        title: '耗材剩余数量',
-        dataIndex: 'name',
-        align: 'center',
-    } 
+   
 ]
 
 export const menuItems = [

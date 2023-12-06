@@ -10,7 +10,7 @@ import { RequestEnum, ContentTypeEnum } from './enum'
  */
 export class VAxios {
   constructor(options) {
-    this.options = options
+    this.options = options 
     this.axiosInstance = axios.create(options)
     this.setupInterceptors()
   }
@@ -166,7 +166,7 @@ export class VAxios {
     }
   }
 
-  get(config, options) {
+  get(config, options) { 
     return this.request({ ...config, method: 'GET' }, options)
   }
 
@@ -197,7 +197,6 @@ export class VAxios {
     conf.requestOptions = opt
 
     conf = this.supportFormData(conf)
-
     return new Promise((resolve, reject) => {
       this.axiosInstance
         .request(conf)

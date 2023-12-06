@@ -10,14 +10,14 @@ export default {
             borderRadius: 4
         },
         Menu: {
-            colorPrimary: "#3AAD19", 
+            colorPrimary: "#3AAD19",
         },
         MenuItem: {
             borderRadius: 0,
             fontSize: 20
         },
         Checkbox: {
-
+            colorPrimary: "#004A3C",
             fontSize: 20
         },
         Tabs: {
