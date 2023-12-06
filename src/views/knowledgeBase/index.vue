@@ -10,7 +10,7 @@
                 </div>
                 <BasicTable :isForm="false" :loading="loading" :isRowSelection="false" :total="2000" :current="2"
                     :pageSize="10" :columns="columns" :scroll="{ y: 530, }" :data-source="data"
-                    :operationBtns="operationBtns" rowKey="id">
+                    :operationBtns="operationBtns" rowKey="id" @rowClick="handleRowClick">
                 </BasicTable>
             </div>
             <div class="detailsView" v-else>
@@ -41,7 +41,7 @@ import inputSearch from '../../components/diy-components/inputSearch.vue'
 import Collapse from '../../components/diy-components/collapse.vue'
 import { ref, reactive, h, onMounted } from 'vue'
 import { columns } from './data.js'
-import { getChemical } from '@/api/chemical/index.js'
+import { getChemical, getChemicalDetail } from '@/api/chemical/index.js'
 let operationBtns = ref([
     {
         label: '编辑',
@@ -283,7 +283,6 @@ let collapseItems = ref([
 onMounted(() => {
     getChemicalData()
 })
-
 function getChemicalData() {
     getChemical().then(res => {
         if (res.length > 0) {
@@ -302,6 +301,18 @@ function handleActionClick() { }
 function search(val) {
     console.log(val)
 }
+function handleRowClick(record) {
+    console.log(record)
+    getChemicalDetailData(record.id)
+}
+function getChemicalDetailData(id) {
+    getChemicalDetail({
+        id
+    }).then(res => {
+        console.log(res) 
+    })
+}
+
 </script>
   
 <style lang='scss' scoped>

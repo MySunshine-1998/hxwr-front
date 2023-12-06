@@ -1,8 +1,8 @@
 <template>
   <Layout>
     <div class="medicalEquipment">
-      <BasicTable :isForm="true" :isRowSelection="true" :loading="loading" :total="2000" :current="2" :pageSize="10" :columns="columns"
-        :scroll="{ x: 1200, }" :data-source="data" :operationBtns="operationBtns">
+      <BasicTable :isForm="true" :isRowSelection="true" :loading="loading" :total="2000" :current="2" :pageSize="10"
+        :columns="columns" :scroll="{ x: 1200, }" :data-source="data" :operationBtns="operationBtns">
         <template #action>
           <TableAction
             :actions="[{ label: '新增', icon: 'img-icon/add.png' }, { label: '导入', icon: 'img-icon/daoru.png' }, { label: '删除', type: 'danger', icon: 'img-icon/shanchu.png' }]"
@@ -34,9 +34,22 @@ let modalTitle = ref('新增')
 
 let operationBtns = ref([
   {
+    label: '查看',
+    icon: 'el-icon-edit-outline',
+    type: 'text',
+    action: (record, column) => {
+
+      Object.assign(addFormVal, record)
+      // addForm.value = record
+      openModal.value = true
+      modalTitle.value = '编辑'
+
+    },
+  },
+  {
     label: '编辑',
     icon: 'el-icon-edit-outline',
-    type: 'link',
+    type: 'text',
     action: (record, column) => {
 
       Object.assign(addFormVal, record)
@@ -49,7 +62,7 @@ let operationBtns = ref([
   {
     label: '删除',
     icon: 'el-icon-edit-outline',
-    type: 'link',
+    type: 'text',
     action: (record, column) => {
       openModal.value = true
       Object.assign(addFormVal, record)
@@ -62,13 +75,16 @@ let loading = ref(false)
 // let columns = ref([])
 let data = ref([
   {
-    name: '测试'
+    name: '测试',
+    onState: '1',
   },
   {
-    name: '测试'
+    name: '测试',
+    onState: '2'
   },
   {
-    name: '测试'
+    name: '测试',
+    onState: '1'
   },
 ])
 function handleActionClick() {

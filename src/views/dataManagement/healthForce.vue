@@ -18,9 +18,22 @@ import { ref, reactive } from 'vue'
 import { columns } from './data/healthForce.js'
 let operationBtns = ref([
   {
+    label: '查看',
+    icon: 'el-icon-edit-outline',
+    type: 'text',
+    action: (record, column) => {
+
+      Object.assign(addFormVal, record)
+      // addForm.value = record
+      openModal.value = true
+      modalTitle.value = '编辑'
+
+    },
+  },
+  {
     label: '编辑',
     icon: 'el-icon-edit-outline',
-    type: 'link',
+    type: 'text',
     action: (record, column) => {
 
       Object.assign(addFormVal, record)
@@ -33,7 +46,7 @@ let operationBtns = ref([
   {
     label: '删除',
     icon: 'el-icon-edit-outline',
-    type: 'link',
+    type: 'text',
     action: (record, column) => {
       openModal.value = true
       Object.assign(addFormVal, record)
@@ -55,7 +68,7 @@ let data = ref([
     name: '测试'
   },
 ])
-function handleActionClick() { 
+function handleActionClick() {
 }
 </script>
 

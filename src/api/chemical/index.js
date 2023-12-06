@@ -7,5 +7,10 @@ let { chemicalUrl } = useGlobSetting()
 export function getChemical() {
     return defHttp({ requestOptions: { apiUrl: chemicalUrl } }).get({
         url: '/typeList'
-    },{isTransformResponse:false})
+    }, { isTransformResponse: false })
 }
+export function getChemicalDetail(obj) {
+    return defHttp({ requestOptions: { apiUrl: chemicalUrl } }).get({
+        url: '/detail?id=' + obj.id
+    }, { isTransformResponse: false })
+} 

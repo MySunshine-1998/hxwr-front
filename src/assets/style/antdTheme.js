@@ -1,9 +1,9 @@
 import { theme } from 'ant-design-vue'
 
 export default {
-    // token: {
-    //     colorPrimary: "#fff"
-    // },
+    token: {
+        colorPrimary: "#61FB23"
+    },
     components: {
         Button: {
             colorPrimary: '#3AAD19',

@@ -35,8 +35,21 @@ export const columns = [
     },
     {
         title: '使用状态',
-        dataIndex: 'name',
+        dataIndex: 'onState',
         align: 'center',
+        option: [
+            {
+                label: '正常',
+                value: '1',
+                color: '#3AAD19'
+            },
+            {
+                label: '故障',
+                value: '2',
+                color: 'red'
+            }
+        ],
+        type: 'selectText',
     },
     {
         title: '耗材名称',
@@ -51,7 +64,7 @@ export const columns = [
     },
     {
         title: '操作',
-        dataIndex: 'action',
+        dataIndex: 'operation',
         align: 'center',
     }
 ]

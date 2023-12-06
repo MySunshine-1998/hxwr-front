@@ -51,8 +51,9 @@ export const columns = [
     },
     {
         title: '操作',
-        dataIndex: 'action',
+        dataIndex: 'operation',
         align: 'center',
+        width: 160,
     }
 ]
 

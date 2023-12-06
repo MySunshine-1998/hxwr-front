@@ -9,7 +9,7 @@
     <a-table v-bind="$attrs"
       :row-selection="props.isRowSelection ? { selectedRowKeys: selectedRowKeysArr, onChange: onSelectionChange } : null"
       v-if="columnsVal.length > 0 && loading == false" :columns="columnsVal" :bordered="true" :pagination="false"
-      :scroll="scroll" @change="handleTableChange">
+      :scroll="scroll" :custom-row="customRow" @change="handleTableChange">
       <template #bodyCell="{ column, record, index }">
         <template v-if="column.dataIndex == 'serialNumber'">
           <span>{{ index + 1 }}</span>
@@ -20,6 +20,12 @@
         <template v-if="column.type == 'select' && column.dataIndex != 'operation'">
           <span :style="{ color: column.option.find(u => u.value == record[column.dataIndex]).color || '#fff' }">{{
             column.option.find(u => u.value == record[column.dataIndex]).label }}</span>
+        </template>
+        <template v-if="column.type == 'selectText' && column.dataIndex != 'operation'">
+          <div class="selectTextView">
+            <span v-for="(item, index) in column.option" :key="index"
+              :style="{ color: item.value == record[column.dataIndex] ? item.color : '#BABABA' }">{{ item.label }}</span>
+          </div>
         </template>
         <template v-else-if="column.dataIndex == 'operation'">
           <a-button class="btnItem" :type="item.type" @click="item.action(record, column)"
@@ -50,6 +56,7 @@
 import { BasicForm } from '@/components/Form'
 import { BasicPagination } from '../../Pagination/index'
 import { reactive, computed, ref } from 'vue'
+let emit = defineEmits(['rowClick'])
 let props = defineProps({
   isForm: Boolean,
   scroll: Object,
@@ -90,6 +97,14 @@ let formHeader = computed(() => {
   }).filter(item => item.search)
 })
 let formVal = reactive({})
+
+const customRow = (record, index) => {
+  return {
+    onClick: () => {
+      emit('rowClick', record)
+    },
+  }
+}
 
 function handleTableChange(pagination, filters, sorter, { currentDataSource }) {
 }
@@ -169,6 +184,15 @@ function onSelectionChange(selectedRowKeys, selectedRows) {
 
   .btnItem {
     margin: 0 6px;
+    color: #61FB23;
+    padding: 4px 8px;
+    margin: 0;
+  }
+
+  .selectTextView {
+    span {
+      padding: 0 4px;
+    }
   }
 
   .Pagination {
